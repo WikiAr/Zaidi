@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حكاية اليمن: بين الحضارة والإمامة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* New Yemeni-inspired calm color palette */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #FBF8F0; /* Soft Off-white */
+            color: #2A2A2A; /* Dark Charcoal Gray */
+        }
+        .tajawal-bold {
+            font-weight: 700;
+        }
+        .bg-primary { background-color: #FBF8F0; }
+        .bg-secondary { background-color: #EDEAE3; } /* Light Beige */
+        .bg-accent { background-color: #A7414A; } /* Muted Red */
+        .text-accent { color: #A7414A; }
+        .text-light { color: #FBF8F0; }
+        .border-accent { border-color: #A7414A; }
+        .bg-contrast { background-color: #2A2A2A; } /* Dark Charcoal */
+        .text-contrast { color: #2A2A2A; }
+        .border-contrast { border-color: #2A2A2A; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover {
+            color: #A7414A;
+            border-bottom-color: #A7414A;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .interactive-button {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .active-button {
+            background-color: #A7414A !important;
+            color: #FBF8F0 !important;
+        }
+        /* New styles for the resistance cards */
+        .resistance-card {
+            background-color: #EDEAE3;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .resistance-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-primary">
+
+    <header class="bg-secondary shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-xl tajawal-bold text-accent">حكاية اليمن</div>
+                <div class="hidden md:flex items-center space-x-8 lg:space-x-10">
+                    <a href="#paradox" class="nav-link text-gray-700 border-b-2 border-transparent">المفارقة</a>
+                    <a href="#eras" class="nav-link text-gray-700 border-b-2 border-transparent">بين عصرين</a>
+                    <a href="#control" class="nav-link text-gray-700 border-b-2 border-transparent">منهجية السيطرة</a>
+                    <a href="#decline" class="nav-link text-gray-700 border-b-2 border-transparent">أدوات التدهور</a>
+                    <a href="#resistance" class="nav-link text-gray-700 border-b-2 border-transparent">روح المقاومة</a>
+                    <a href="#gemini" class="nav-link text-gray-700 border-b-2 border-transparent">اسأل Gemini</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section: Hero -->
+        <section id="paradox" class="min-h-screen flex items-center justify-center bg-primary text-center p-6">
+            <div class="container mx-auto">
+                <h1 class="text-4xl md:text-6xl tajawal-bold text-accent mb-4">المفارقة اليمنية</h1>
+                <p class="text-lg md:text-2xl max-w-3xl mx-auto text-gray-700">
+                    كيف تحوّل اليمن من مهد الحضارات ومركز التجارة والعلم، إلى ساحة للتكتلات القبلية والجهل والفقر تحت حكم الأئمة؟ 
+                    <br>
+                    هذا التطبيق يستكشف رحلة التحول لفهم جذور الحاضر.
+                </p>
+                <div class="mt-12">
+                    <svg class="w-12 h-12 mx-auto text-accent animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Two Eras Comparison -->
+        <section id="eras" class="py-20 bg-secondary">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl tajawal-bold text-accent">اليمن بين عصرين</h2>
+                    <p class="mt-2 text-lg text-gray-700">مقارنة تفاعلية بين يمن الحضارات ويمن الإمامة. اختر جانبًا للمقارنة.</p>
+                </div>
+
+                <div id="comparison-buttons" class="flex flex-wrap justify-center gap-3 mb-10">
+                    <button data-topic="society" class="interactive-button px-6 py-2 rounded-full border-2 border-accent text-accent tajawal-bold active-button">المجتمع والحكم</button>
+                    <button data-topic="economy" class="interactive-button px-6 py-2 rounded-full border-2 border-accent text-accent tajawal-bold">الاقتصاد والموارد</button>
+                    <button data-topic="knowledge" class="interactive-button px-6 py-2 rounded-full border-2 border-accent text-accent tajawal-bold">العلم والتعليم</button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-primary p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl tajawal-bold text-contrast mb-4">☀️ يمن الحضارات</h3>
+                        <div id="civilization-content"></div>
+                    </div>
+                    <div class="bg-primary p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl tajawal-bold text-accent mb-4">🌙 يمن الإمامة</h3>
+                        <div id="imamate-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Ideology of Control -->
+        <section id="control" class="py-20 bg-primary">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl tajawal-bold text-accent">منهجية السيطرة</h2>
+                    <p class="mt-2 text-lg text-gray-700">لم يكن التدهور عرضيًا، بل نتيجة لأيديولوجية حكم قامت على شرطين: النسب، و"الدعوة بالسيف".</p>
+                </div>
+                <div class="max-w-3xl mx-auto bg-secondary p-8 rounded-lg shadow-lg">
+                    <div class="flex items-start">
+                        <div class="ml-4">
+                            <h3 class="text-2xl tajawal-bold text-accent">الدعوة المصحوبة بالسيف</h3>
+                            <p class="mt-2 text-gray-800">
+                                هذا المبدأ الأساسي في المذهب الزيدي الهادوي يشرعن الصراع المسلح كطريق أساسي للسلطة. القيادة لا تأتي بالإجماع أو الكفاءة الإدارية، بل بالقدرة على حمل السلاح والقتال. هذه الفكرة بطبيعتها عززت ثقافة الصراع الدائم على الحكم ومنعت الاستقرار، مما يفسر "التكتلات القبلية التي تغزو بعضها بعضًا".
+                            </p>
+                            <p class="mt-4 text-sm text-gray-600">
+                                تأسست الإمامة عام <strong>898م</strong> واستمرت حتى ثورة <strong>1962م</strong>، في واحدة من أطول فترات الحكم في التاريخ، والتي تميزت بالصراعات الداخلية والخارجية المستمرة.
+                            </p>
+                        </div>
+                        <div class="text-5xl text-accent">⚔️</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Tools of Decline -->
+        <section id="decline" class="py-20 bg-secondary">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl tajawal-bold text-accent">أدوات التدهور</h2>
+                    <p class="mt-2 text-lg text-gray-700">استخدم الأئمة سياسات ممنهجة لتفتيت المجتمع وإفقاره وتجهيله لضمان السيطرة والبقاء. اضغط على الزر ✨ لمعرفة التأثيرات الحديثة.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="card bg-primary p-6 rounded-lg shadow-lg" data-policy="نظام الرهائن">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl ml-4">⛓️</span>
+                            <h4 class="text-xl tajawal-bold text-contrast">نظام الرهائن</h4>
+                        </div>
+                        <p class="text-gray-700">إخضاع القبائل عبر أخذ أبناء الشيوخ كرهائن لضمان ولائهم. قُدّر وجود 4000 رهينة في قصور الإمام أحمد عام 1939.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button class="gemini-btn w-full px-4 py-2 bg-accent text-light rounded-md tajawal-bold">✨ شاهد التأثير الحديث</button>
+                            <div class="gemini-output mt-2 text-sm text-gray-600"></div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="card bg-primary p-6 rounded-lg shadow-lg" data-policy="فتوى الخراج">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl ml-4">💸</span>
+                            <h4 class="text-xl tajawal-bold text-contrast">فتوى الخراج</h4>
+                        </div>
+                        <p class="text-gray-700">تحويل أراضي اليمنيين إلى "خراجية" (غنيمة حرب)، مما شرعن فرض ضرائب باهظة ومصادرة الثروات تحت غطاء ديني.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button class="gemini-btn w-full px-4 py-2 bg-accent text-light rounded-md tajawal-bold">✨ شاهد التأثير الحديث</button>
+                            <div class="gemini-output mt-2 text-sm text-gray-600"></div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="card bg-primary p-6 rounded-lg shadow-lg" data-policy="تدمير التعليم">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl ml-4">🚫</span>
+                            <h4 class="text-xl tajawal-bold text-contrast">تدمير التعليم</h4>
+                        </div>
+                        <p class="text-gray-700">محاربة التعليم الحديث وإغلاق المدارس تحت شعار "الشعب الجاهل أسهل حكمًا وقيادة". تم تحويل "دار الصنايع" إلى سجن.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button class="gemini-btn w-full px-4 py-2 bg-accent text-light rounded-md tajawal-bold">✨ شاهد التأثير الحديث</button>
+                            <div class="gemini-output mt-2 text-sm text-gray-600"></div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="card bg-primary p-6 rounded-lg shadow-lg" data-policy="التحريش بين القبائل">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl ml-4">⚔️</span>
+                            <h4 class="text-xl tajawal-bold text-contrast">التحريش بين القبائل</h4>
+                        </div>
+                        <p class="text-gray-700">تعبئة القبائل ضد بعضها البعض، واستخدامها كأدوات عسكرية، مما منع قيام هوية وطنية موحدة يمكن أن تتحدى حكمهم.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button class="gemini-btn w-full px-4 py-2 bg-accent text-light rounded-md tajawal-bold">✨ شاهد التأثير الحديث</button>
+                            <div class="gemini-output mt-2 text-sm text-gray-600"></div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="card bg-primary p-6 rounded-lg shadow-lg" data-policy="غياب التنمية">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl ml-4">📉</span>
+                            <h4 class="text-xl tajawal-bold text-contrast">غياب التنمية</h4>
+                        </div>
+                        <p class="text-gray-700">نهج غير تنموي يهدف إلى هدم ما هو قائم بدلاً من البناء، مما أدى إلى ركود اقتصادي وتجاري وصناعي شامل.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button class="gemini-btn w-full px-4 py-2 bg-accent text-light rounded-md tajawal-bold">✨ شاهد التأثير الحديث</button>
+                            <div class="gemini-output mt-2 text-sm text-gray-600"></div>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="card bg-primary p-6 rounded-lg shadow-lg" data-policy="الاضطهاد الطائفي">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl ml-4">🎭</span>
+                            <h4 class="text-xl tajawal-bold text-contrast">الاضطهاد الطائفي</h4>
+                        </div>
+                        <p class="text-gray-700">فرض المذهب الزيدي بالقوة، وتكفير المخالفين مثل الشوافع، وإبادة طوائف كاملة مثل المطرفية لرفضها شرط النسب.</p>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <button class="gemini-btn w-full px-4 py-2 bg-accent text-light rounded-md tajawal-bold">✨ شاهد التأثير الحديث</button>
+                            <div class="gemini-output mt-2 text-sm text-gray-600"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Resistance - New Card Design -->
+        <section id="resistance" class="py-20 bg-primary">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl tajawal-bold text-accent">روح المقاومة</h2>
+                    <p class="mt-2 text-lg text-gray-700">"كلما أفاق الشعب أعادوه". لم يكن حكم الإمامة مستقرًا أبدًا، بل قوبل بثورات وانتفاضات مستمرة.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2">1217</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة المطرفية</h4>
+                        <p class="text-gray-700 text-sm">حركة فكرية ومذهبية رفضت شرط "النسب" كشرط للحكم، مما أدى إلى إبادتها على يد الإمام المنصور عبد الله بن حمزة. تعتبر هذه الحركة أول مقاومة فكرية كبيرة.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2">1558</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2">صراعات المتوكل شرف الدين</h4>
+                        <p class="text-gray-700 text-sm">موجة من الصراعات العسكرية والتمردات الداخلية ضد حكم الإمام، والتي كشفت عن هشاشة النظام الإمامي وعدم استقراره.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2">1928</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة الزرانيق</h4>
+                        <p class="text-gray-700 text-sm">انتفاضة مسلحة لقبيلة الزرانيق ضد نظام الإمام يحيى حميد الدين، قوبلت بوحشية شديدة من قبل الإمامة، مما أظهر شراسة النظام في قمع أي تمرد.</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2">1948</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة الدستور</h4>
+                        <p class="text-gray-700 text-sm">حركة وطنية سعت لإقامة حكم دستوري بدلاً من الحكم المطلق، انتهت باغتيال الإمام يحيى لكنها فشلت في إقامة الدولة الحديثة.</p>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2">1955</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2">حركة الثلايا</h4>
+                        <p class="text-gray-700 text-sm">محاولة انقلابية قادها العقيد أحمد الثلايا ضد الإمام أحمد حميد الدين، فشلت لكنها كانت مؤشرًا على تزايد السخط داخل المؤسسة العسكرية.</p>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2">1962</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة 26 سبتمبر</h4>
+                        <p class="text-gray-700 text-sm">الثورة التي أنهت حكم الإمامة المستمر لقرون، وأسست الجمهورية العربية اليمنية، معلنة بداية عصر جديد في تاريخ اليمن.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section: Ask Gemini -->
+        <section id="gemini" class="py-20 bg-secondary">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl tajawal-bold text-accent">✨ اسأل Gemini عن تاريخ اليمن</h2>
+                    <p class="mt-2 text-lg text-gray-700">اكتب سؤالك هنا للحصول على إجابات مفصلة ومُولَّدة بالذكاء الاصطناعي حول تاريخ اليمن.</p>
+                </div>
+                <div class="max-w-3xl mx-auto p-6 bg-primary rounded-lg shadow-lg">
+                    <textarea id="gemini-input" class="w-full h-32 p-4 mb-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-accent" placeholder="اكتب سؤالك هنا، مثلاً: ما هي نتائج ثورة 26 سبتمبر 1962؟"></textarea>
+                    <button id="gemini-ask-btn" class="w-full px-6 py-3 bg-accent text-light rounded-lg tajawal-bold hover:opacity-90 transition-opacity">
+                        اسأل Gemini
+                    </button>
+                    <div id="gemini-response" class="mt-6 p-4 bg-secondary rounded-lg text-gray-800">
+                        <p class="text-sm">سيظهر الرد هنا...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-secondary mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-700">
+            <h3 class="text-2xl tajawal-bold text-accent mb-4">الخلاصة: إرث الماضي وتحديات الحاضر</h3>
+            <p class="max-w-4xl mx-auto">
+                إن سياسات الإمامة الممنهجة في التجهيل والإفقار والتفريق لم تكن مجرد فشل في الحكم، بل استراتيجية ناجحة للبقاء في السلطة على حساب الوطن. إرث الانقسامات القبلية، وتدمير الاقتصاد، وتغييب الوعي لا يزال يؤثر بعمق على اليمن المعاصر. فهم هذا التاريخ ليس ترفًا، بل ضرورة لفهم جذور الصراع الحالي ورسم طريق نحو مستقبل أفضل.
+            </p>
+            <p class="mt-8 text-sm text-gray-500">تم إنشاء هذا التطبيق التفاعلي بناءً على تقرير "تحول اليمن: من مجتمع حضاري إلى تكتلات قبلية" مع ميزات إضافية مدعومة بـ Gemini.</p>
+        </div>
+        
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const comparisonData = {
+                society: {
+                    civilization: `
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-contrast ml-2">🏛️</span> <span>ممالك قوية ومتقدمة (سبأ، حمير) بنظام إداري متطور.</span></li>
+                            <li class="flex items-start"><span class="text-contrast ml-2">⚖️</span> <span>قوانين مدنية تنظم التجارة والزراعة والحياة العامة.</span></li>
+                            <li class="flex items-start"><span class="text-contrast ml-2">🌍</span> <span>مجتمع منفتح على العالم عبر التجارة الدولية.</span></li>
+                            <li class="flex items-start"><span class="text-contrast ml-2">🤝</span> <span>هوية جامعة تتمحور حول المملكة وإنجازاتها.</span></li>
+                        </ul>
+                    `,
+                    imamate: `
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-accent ml-2">⚔️</span> <span>تكتلات قبلية متناحرة، الولاء للقبيلة والإمام لا للوطن.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">⛓️</span> <span>نظام الرهائن لإخضاع القبائل وزرع الخوف.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">🔒</span> <span>مجتمع منغلق ومعزول عن التطورات العالمية.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">🎭</span> <span>تمييز طائفي واجتماعي (مثل "بني الخمس").</span></li>
+                        </ul>
+                    `
+                },
+                economy: {
+                    civilization: `
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-contrast ml-2">🌾</span> <span>زراعة متطورة (سد مأرب، المدرجات) وإنتاج وفير.</span></li>
+                            <li class="flex items-start"><span class="text-contrast ml-2">🚢</span> <span>مركز تجاري عالمي للبخور والعطور والسلع الفاخرة.</span></li>
+                            <li class="flex items-start"><span class="text-contrast ml-2">🛠️</span> <span>صناعات متقدمة مثل السيوف اليمنية والأقمشة الفاخرة.</span></li>
+                            <li class="flex items-start"><span class="text-contrast ml-2">💧</span> <span>بنية تحتية متطورة (سدود، قنوات ري، قصور).</span></li>
+                        </ul>
+                    `,
+                    imamate: `
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-accent ml-2">💸</span> <span>ضرائب استغلالية (الخراج والخمس) لإفقار الشعب.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">📉</span> <span>ركود اقتصادي وتدمير للبنية التحتية القائمة.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">💰</span> <span>مصادرة الثروات والتلاعب بالعملة لخدمة الحاكم.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">🏚️</span> <span>شعب يقاتل من أجل قوت يومه في ظل الفقر المدقع.</span></li>
+                        </ul>
+                    `
+                },
+                knowledge: {
+                    civilization: `
+                        <ul class="space-y-3 list-inside">
+                             <li class="flex items-start"><span class="text-contrast ml-2">📐</span> <span>براعة هندسية ومعمارية (قصر غمدان، السدود).</span></li>
+                             <li class="flex items-start"><span class="text-contrast ml-2">✍️</span> <span>نظام كتابة خاص (المسند) وتوثيق للتاريخ والإنجازات.</span></li>
+                             <li class="flex items-start"><span class="text-contrast ml-2">🎨</span> <span>فنون ونحت ونقوش تزين المباني والمعابد.</span></li>
+                             <li class="flex items-start"><span class="text-contrast ml-2">🗺️</span> <span>معرفة جغرافية وفلكية لخدمة التجارة والزراعة.</span></li>
+                        </ul>
+                    `,
+                    imamate: `
+                        <ul class="space-y-3 list-inside">
+                            <li class="flex items-start"><span class="text-accent ml-2">🚫</span> <span>سياسة تجهيل متعمد ومحاربة للعلوم الحديثة.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">📖</span> <span>تعليم ديني محدود يركز على الحفظ وترسيخ الطاعة.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">🔒</span> <span>قيود صارمة على المكتبات والوصول للمعرفة.</span></li>
+                            <li class="flex items-start"><span class="text-accent ml-2">🏰</span> <span>تحويل المؤسسات التعليمية إلى سجون ومعتقلات.</span></li>
+                        </ul>
+                    `
+                }
+            };
+
+            const policyPrompts = {
+                'نظام الرهائن': 'اشرح كيف يمكن أن يؤدي نظام الرهائن التاريخي إلى إضعاف النسيج الاجتماعي والثقة بين مكونات المجتمع في العصر الحديث.',
+                'فتوى الخراج': 'صف كيف يمكن أن تتجلى سياسات مصادرة الثروات والضرائب الجائرة مثل "الخراج" في الاقتصاد الحديث، وما هي تأثيراتها على التنمية؟',
+                'تدمير التعليم': 'اشرح كيف يمكن لسياسة تدمير التعليم وتجهيل الشعب أن تؤدي إلى تبعات اجتماعية واقتصادية طويلة الأمد في أي مجتمع حديث.',
+                'التحريش بين القبائل': 'اشرح كيف يمكن أن تؤدي سياسة "التحريش بين القبائل" إلى انقسامات مجتمعية وصراعات داخلية مستمرة في العصر الحديث.',
+                'غياب التنمية': 'اشرح كيف يمكن أن يؤدي "غياب التنمية" والتركيز على الهدم بدلاً من البناء إلى تدهور اقتصادي شامل في الدول المعاصرة.',
+                'الاضطهاد الطائفي': 'صف كيف يمكن أن يؤدي "الاضطهاد الطائفي" إلى صراعات مجتمعية وتهديد للهوية الوطنية في العصر الحديث.'
+            };
+
+            const civilizationContent = document.getElementById('civilization-content');
+            const imamateContent = document.getElementById('imamate-content');
+            const buttons = document.querySelectorAll('#comparison-buttons button');
+            const geminiInput = document.getElementById('gemini-input');
+            const geminiAskBtn = document.getElementById('gemini-ask-btn');
+            const geminiResponseDiv = document.getElementById('gemini-response');
+            const policyButtons = document.querySelectorAll('.gemini-btn');
+
+            async function fetchGeminiResponse(prompt) {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        return 'حدث خطأ في الحصول على الإجابة. يرجى المحاولة مرة أخرى.';
+                    }
+                } catch (error) {
+                    console.error('Error fetching Gemini response:', error);
+                    return 'حدث خطأ في الاتصال بالخدمة. يرجى التحقق من اتصالك بالإنترنت.';
+                }
+            }
+
+            async function handleGeminiPolicyRequest(event) {
+                const button = event.target;
+                const card = button.closest('.card');
+                const policyName = card.dataset.policy;
+                const outputDiv = card.querySelector('.gemini-output');
+                const originalText = button.textContent;
+
+                button.textContent = 'جارٍ التحميل...';
+                button.disabled = true;
+
+                const prompt = policyPrompts[policyName];
+                const responseText = await fetchGeminiResponse(prompt);
+
+                outputDiv.innerHTML = `<strong class="text-accent">التأثير الحديث:</strong> ${responseText}`;
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+
+            async function handleGeminiChatRequest() {
+                const userQuestion = geminiInput.value.trim();
+                if (!userQuestion) {
+                    geminiResponseDiv.innerHTML = '<p class="text-red-500">من فضلك اكتب سؤالك أولاً.</p>';
+                    return;
+                }
+
+                geminiAskBtn.textContent = 'جارٍ الإجابة...';
+                geminiAskBtn.disabled = true;
+                geminiResponseDiv.innerHTML = '<p>...</p>';
+
+                const prompt = `أجب عن السؤال التالي حول تاريخ اليمن، مع التركيز على فهم سياقه: "${userQuestion}"`;
+                const responseText = await fetchGeminiResponse(prompt);
+
+                geminiResponseDiv.innerHTML = responseText;
+                geminiAskBtn.textContent = 'اسأل Gemini';
+                geminiAskBtn.disabled = false;
+            }
+
+            function updateContent(topic) {
+                civilizationContent.innerHTML = comparisonData[topic].civilization;
+                imamateContent.innerHTML = comparisonData[topic].imamate;
+                buttons.forEach(button => {
+                    button.classList.remove('active-button');
+                    if (button.dataset.topic === topic) {
+                        button.classList.add('active-button');
+                    }
+                });
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    updateContent(button.dataset.topic);
+                });
+            });
+
+            updateContent('society');
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70, 
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            policyButtons.forEach(button => {
+                button.addEventListener('click', handleGeminiPolicyRequest);
+            });
+
+            geminiAskBtn.addEventListener('click', handleGeminiChatRequest);
+        });
+    </script>
+</body>
+</html>
