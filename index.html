@@ -65,17 +65,48 @@
             background-color: #A7414A !important;
             color: #FBF8F0 !important;
         }
-        /* New styles for the resistance cards */
-        .resistance-card {
-            background-color: #EDEAE3;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-            transition: all 0.3s ease-in-out;
+        /* New styles for the resistance display */
+        .resistance-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        .resistance-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .resistance-card {
+            width: 100%;
+            max-width: 600px;
+            background-color: #EDEAE3;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .resistance-card.fade-out {
+            opacity: 0;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .nav-button {
+            background-color: #A7414A;
+            color: #FBF8F0;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+        .nav-button:hover:not(:disabled) {
+            background-color: #7A3138;
+        }
+        .nav-button:disabled {
+            background-color: #C0C0C0;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -103,9 +134,7 @@
             <div class="container mx-auto">
                 <h1 class="text-4xl md:text-6xl tajawal-bold text-accent mb-4">المفارقة اليمنية</h1>
                 <p class="text-lg md:text-2xl max-w-3xl mx-auto text-gray-700">
-                    كيف تحوّل اليمن من مهد الحضارات ومركز التجارة والعلم، إلى ساحة للتكتلات القبلية والجهل والفقر تحت حكم الأئمة؟ 
-                    <br>
-                    هذا التطبيق يستكشف رحلة التحول لفهم جذور الحاضر.
+                    يستكشف هذا التطبيق المفارقة اليمنية: كيف تحول مهد الحضارات إلى ساحة للتكتلات القبلية والجهل تحت حكم الأئمة.
                 </p>
                 <div class="mt-12">
                     <svg class="w-12 h-12 mx-auto text-accent animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -248,49 +277,23 @@
             </div>
         </section>
 
-        <!-- Section: Resistance - New Card Design -->
+        <!-- Section: Resistance - New Card Design with Navigation -->
         <section id="resistance" class="py-20 bg-primary">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl tajawal-bold text-accent">روح المقاومة</h2>
                     <p class="mt-2 text-lg text-gray-700">"كلما أفاق الشعب أعادوه". لم يكن حكم الإمامة مستقرًا أبدًا، بل قوبل بثورات وانتفاضات مستمرة.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Card 1 -->
-                    <div class="resistance-card">
-                        <p class="text-2xl tajawal-bold text-contrast mb-2">1217</p>
-                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة المطرفية</h4>
-                        <p class="text-gray-700 text-sm">حركة فكرية ومذهبية رفضت شرط "النسب" كشرط للحكم، مما أدى إلى إبادتها على يد الإمام المنصور عبد الله بن حمزة. تعتبر هذه الحركة أول مقاومة فكرية كبيرة.</p>
+                <div class="resistance-container">
+                    <div id="resistance-card" class="resistance-card">
+                        <p class="text-2xl tajawal-bold text-contrast mb-2" id="event-year">...</p>
+                        <h4 class="text-xl tajawal-bold text-accent mb-2" id="event-title">...</h4>
+                        <p class="text-gray-700 text-sm" id="event-description">...</p>
                     </div>
-                    <!-- Card 2 -->
-                    <div class="resistance-card">
-                        <p class="text-2xl tajawal-bold text-contrast mb-2">1558</p>
-                        <h4 class="text-xl tajawal-bold text-accent mb-2">صراعات المتوكل شرف الدين</h4>
-                        <p class="text-gray-700 text-sm">موجة من الصراعات العسكرية والتمردات الداخلية ضد حكم الإمام، والتي كشفت عن هشاشة النظام الإمامي وعدم استقراره.</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="resistance-card">
-                        <p class="text-2xl tajawal-bold text-contrast mb-2">1928</p>
-                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة الزرانيق</h4>
-                        <p class="text-gray-700 text-sm">انتفاضة مسلحة لقبيلة الزرانيق ضد نظام الإمام يحيى حميد الدين، قوبلت بوحشية شديدة من قبل الإمامة، مما أظهر شراسة النظام في قمع أي تمرد.</p>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="resistance-card">
-                        <p class="text-2xl tajawal-bold text-contrast mb-2">1948</p>
-                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة الدستور</h4>
-                        <p class="text-gray-700 text-sm">حركة وطنية سعت لإقامة حكم دستوري بدلاً من الحكم المطلق، انتهت باغتيال الإمام يحيى لكنها فشلت في إقامة الدولة الحديثة.</p>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="resistance-card">
-                        <p class="text-2xl tajawal-bold text-contrast mb-2">1955</p>
-                        <h4 class="text-xl tajawal-bold text-accent mb-2">حركة الثلايا</h4>
-                        <p class="text-gray-700 text-sm">محاولة انقلابية قادها العقيد أحمد الثلايا ضد الإمام أحمد حميد الدين، فشلت لكنها كانت مؤشرًا على تزايد السخط داخل المؤسسة العسكرية.</p>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="resistance-card">
-                        <p class="text-2xl tajawal-bold text-contrast mb-2">1962</p>
-                        <h4 class="text-xl tajawal-bold text-accent mb-2">ثورة 26 سبتمبر</h4>
-                        <p class="text-gray-700 text-sm">الثورة التي أنهت حكم الإمامة المستمر لقرون، وأسست الجمهورية العربية اليمنية، معلنة بداية عصر جديد في تاريخ اليمن.</p>
+                    <div class="nav-buttons">
+                        <button id="prev-btn" class="nav-button">السابق</button>
+                        <span id="event-counter" class="text-gray-700 tajawal-bold">1 من 6</span>
+                        <button id="next-btn" class="nav-button">التالي</button>
                     </div>
                 </div>
             </div>
@@ -325,7 +328,6 @@
             </p>
             <p class="mt-8 text-sm text-gray-500">تم إنشاء هذا التطبيق التفاعلي بناءً على تقرير "تحول اليمن: من مجتمع حضاري إلى تكتلات قبلية" مع ميزات إضافية مدعومة بـ Gemini.</p>
         </div>
-        
     </footer>
 
     <script>
@@ -395,6 +397,41 @@
                 'غياب التنمية': 'اشرح كيف يمكن أن يؤدي "غياب التنمية" والتركيز على الهدم بدلاً من البناء إلى تدهور اقتصادي شامل في الدول المعاصرة.',
                 'الاضطهاد الطائفي': 'صف كيف يمكن أن يؤدي "الاضطهاد الطائفي" إلى صراعات مجتمعية وتهديد للهوية الوطنية في العصر الحديث.'
             };
+            
+            const resistanceEvents = [
+                {
+                    year: '1217',
+                    title: 'ثورة المطرفية',
+                    description: 'حركة فكرية ومذهبية رفضت شرط "النسب" كشرط للحكم، مما أدى إلى إبادتها على يد الإمام المنصور عبد الله بن حمزة. تعتبر هذه الحركة أول مقاومة فكرية كبيرة.'
+                },
+                {
+                    year: '1558',
+                    title: 'صراعات المتوكل شرف الدين',
+                    description: 'موجة من الصراعات العسكرية والتمردات الداخلية ضد حكم الإمام، والتي كشفت عن هشاشة النظام الإمامي وعدم استقراره.'
+                },
+                {
+                    year: '1928',
+                    title: 'ثورة الزرانيق',
+                    description: 'انتفاضة مسلحة لقبيلة الزرانيق ضد نظام الإمام يحيى حميد الدين، قوبلت بوحشية شديدة من قبل الإمامة، مما أظهر شراسة النظام في قمع أي تمرد.'
+                },
+                {
+                    year: '1948',
+                    title: 'ثورة الدستور',
+                    description: 'حركة وطنية سعت لإقامة حكم دستوري بدلاً من الحكم المطلق، انتهت باغتيال الإمام يحيى لكنها فشلت في إقامة الدولة الحديثة.'
+                },
+                {
+                    year: '1955',
+                    title: 'حركة الثلايا',
+                    description: 'محاولة انقلابية قادها العقيد أحمد الثلايا ضد الإمام أحمد حميد الدين، فشلت لكنها كانت مؤشرًا على تزايد السخط داخل المؤسسة العسكرية.'
+                },
+                {
+                    year: '1962',
+                    title: 'ثورة 26 سبتمبر',
+                    description: 'الثورة التي أنهت حكم الإمامة المستمر لقرون، وأسست الجمهورية العربية اليمنية، معلنة بداية عصر جديد في تاريخ اليمن.'
+                }
+            ];
+
+            let currentEventIndex = 0;
 
             const civilizationContent = document.getElementById('civilization-content');
             const imamateContent = document.getElementById('imamate-content');
@@ -403,6 +440,53 @@
             const geminiAskBtn = document.getElementById('gemini-ask-btn');
             const geminiResponseDiv = document.getElementById('gemini-response');
             const policyButtons = document.querySelectorAll('.gemini-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const eventCounter = document.getElementById('event-counter');
+            const resistanceCard = document.getElementById('resistance-card');
+            const eventYearEl = document.getElementById('event-year');
+            const eventTitleEl = document.getElementById('event-title');
+            const eventDescriptionEl = document.getElementById('event-description');
+
+            // Function to render the current resistance event with a fade effect
+            function renderResistanceEvent() {
+                // Add fade-out class
+                resistanceCard.classList.add('fade-out');
+
+                // Wait for the fade-out transition to complete
+                setTimeout(() => {
+                    const event = resistanceEvents[currentEventIndex];
+                    eventYearEl.textContent = event.year;
+                    eventTitleEl.textContent = event.title;
+                    eventDescriptionEl.textContent = event.description;
+                    eventCounter.textContent = `${currentEventIndex + 1} من ${resistanceEvents.length}`;
+                    
+                    // Remove fade-out class and add fade-in
+                    resistanceCard.classList.remove('fade-out');
+                }, 300); // Match this with the CSS transition duration
+
+                // Disable/enable buttons based on index
+                prevBtn.disabled = currentEventIndex === 0;
+                nextBtn.disabled = currentEventIndex === resistanceEvents.length - 1;
+            }
+
+            // Event listeners for navigation buttons
+            prevBtn.addEventListener('click', () => {
+                if (currentEventIndex > 0) {
+                    currentEventIndex--;
+                    renderResistanceEvent();
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentEventIndex < resistanceEvents.length - 1) {
+                    currentEventIndex++;
+                    renderResistanceEvent();
+                }
+            });
+
+            // Initial render
+            renderResistanceEvent();
 
             async function fetchGeminiResponse(prompt) {
                 let chatHistory = [];
