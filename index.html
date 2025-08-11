@@ -386,8 +386,7 @@
                 `
             },
             economy: {
-                civilization: `
-                    <ul class="space-y-3 list-inside">
+         AIzaSyD1UCuwgpJNVEkJnOpPyMv7I3nSpTrNBPk    <ul class="space-y-3 list-inside">
                         <li class="flex items-start"><span class="text-accent-green ml-2">🌾</span> <span>زراعة متطورة (سد مأرب، المدرجات) وإنتاج وفير.</span></li>
                         <li class="flex items-start"><span class="text-accent-green ml-2">🚢</span> <span>مركز تجاري عالمي للبخور والعطور والسلع الفاخرة.</span></li>
                         <li class="flex items-start"><span class="text-accent-green ml-2">🛠️</span> <span>صناعات متقدمة مثل السيوف اليمنية والأقمشة الفاخرة.</span></li>
@@ -522,7 +521,7 @@
                 let chatHistory = [];
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                 const payload = { contents: chatHistory };
-                const apiKey = "AIzaSyD1UCuwgpJNVEkJnOpPyMv7I3nSpTrNBPk";
+                const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
                 try {
